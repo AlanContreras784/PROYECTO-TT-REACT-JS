@@ -1,0 +1,16 @@
+.nav{
+    display: flex;
+    width: 50vw;
+    background-color: transparent;
+    color: white;
+    
+
+    ul{
+        display: flex;
+        margin: 0 auto;
+        width: 100%;
+        justify-content: space-around;
+        align-items: center;
+        list-style: none;
+    }
+}
