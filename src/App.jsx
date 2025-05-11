@@ -8,11 +8,10 @@ import Footer from './components/Footer';
 import ProductosContainer from './components/ProductosContainer'
 import Carrito from './components/Carrito';
 import FormularioConSweetAlert from './components/FormularioConSweetAlert';
+import '../src/main'
 function App() {
 
 const [productosCarrito, setProductosCarrito] = useState([])
-
-
 
 function funcionCarrito(producto){
   
