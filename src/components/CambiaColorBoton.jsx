@@ -5,11 +5,6 @@ function CambiarColorBoton({texto, funcionBoton}){
 
     const [color, setColor]=useState({backgroundColor: 'orange'})
     
-   /* function seleccionColor(){
-        (color.backgroundColor==="orange")  ? setColor({backgroundColor: 'white'}) 
-        : setColor({backgroundColor: 'orange'})
-    }  */
-
     return(
         <button
         style={color}

@@ -5,18 +5,14 @@ import Carrito from "./Carrito";
 import { useEffect } from "react";
 import "../styles/CardCarrito.css"
 
-export default function ProductosContainer(){
+export default function ProductosContainer({functionCarrito}){
 
-    //Array de Productos recibidos por UseEffect
+    //Array Vacio para guardar la lista  de Productos recibidos por UseEffect
     const [productos, setProductos]= useState([]);
-    //Array de productos creados por funcionCarrito al AgregarProductos
-    const [productosCarrito, setProductosCarrito] = useState([]);
     //Estado para informar la carga de datos del array del servidor
     const [cargando,setCargando] = useState(true);
-    //Estado para informar los errores al carga los datos del array del servidor
+    //Estado para informar los errores al carga los datos del servidor
     const [error, setError] = useState(null);
-    //Variable del total del Carrito    
-    const  [total , setTotal] = useState(0);
 
 
     {useEffect(() => {
@@ -37,25 +33,11 @@ export default function ProductosContainer(){
             });
     }, []);}
 
-        
-    function funcionCarrito(producto){
-        const existe = productosCarrito.find(p=> p.id===producto.id)
-        console.log(existe)
-
-        if(existe){
-            const carritoActualizado= productosCarrito.map((p)=>{
-                if(producto.id==p.id){
-                    const productoActualizado= {...p, cantidad: producto.cantidad + p.cantidad}
-                    return productoActualizado;
-                }else{ return p }
-            })
-            setProductosCarrito(carritoActualizado)
-        }else{
-            console.log(productosCarrito)
-            setProductosCarrito([...productosCarrito, producto])
-        }
-        
+    function Disparadora(producto){
+        functionCarrito(producto)
     }
+
+
 
     if (cargando){
         return <p>Cargando productos......</p>
@@ -69,15 +51,9 @@ export default function ProductosContainer(){
                         <Cards
                             key={producto.id}
                             producto={producto}
-                            funcionCarrito={funcionCarrito}
+                            funcionCarrito={Disparadora}
                             />
                     ))}
-                </div>
-                <div >
-                    <Carrito
-                    key={productosCarrito.id}
-                    productos={productosCarrito}
-                    />
                 </div>
             </div>
         )
